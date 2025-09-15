@@ -13,8 +13,9 @@ object Main {
       .getOrCreate()
 
     val df = spark.read
-      .option("header",value=true)
-      .csv("data/mnm_dataset.csv")
+      .option("multiline", value = true)
+      .option("mode", "PERMISSIVE")
+      .json("data/exemple.json")
 
     df.show(false)
   }
