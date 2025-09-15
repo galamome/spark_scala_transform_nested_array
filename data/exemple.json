@@ -1,0 +1,108 @@
+[
+  {
+    "employee_id": 1,
+    "name": "John Smith",
+    "age": 30,
+    "skills": [
+      {
+        "name": "Java",
+        "level": "expert"
+      },
+      {
+        "name": "Python",
+        "level": "intermediate"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Project A",
+        "client": "Acme Inc",
+        "tasks": [
+          {
+            "name": "Task 1",
+            "description": "Implement feature X",
+            "status": "completed",
+            "estimate": 8
+          },
+          {
+            "name": "Task 2",
+            "description": "Fix bug Y",
+            "status": "in progress",
+            "estimate": 5
+          }
+        ]
+      },
+      {
+        "name": "Project B",
+        "client": "Beta Corp",
+        "tasks": [
+          {
+            "name": "Task 3",
+            "description": "Implement feature Z",
+            "status": "pending",
+            "estimate": 13
+          },
+          {
+            "name": "Task 4",
+            "description": "Improve performance",
+            "status": "in progress",
+            "estimate": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "employee_id": 2,
+    "name": "Jane Doe",
+    "age": 25,
+    "skills": [
+      {
+        "name": "Javascrit",
+        "level": "advanced"
+      },
+      {
+        "name": "PHP",
+        "level": "intermediate"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Project C",
+        "client": "Gamma Inc",
+        "tasks": [
+          {
+            "name": "Task 5",
+            "description": "Implement feature W",
+            "status": "completed",
+            "estimate": 20
+          },
+          {
+            "name": "Task 6",
+            "description": "Fix bug V",
+            "status": "in progress",
+            "estimate": 13
+          }
+        ]
+      },
+      {
+        "name": "Project D",
+        "client": "Delta Ltd",
+        "tasks": [
+          {
+            "name": "Task 7",
+            "description": "Implement feature U",
+            "status": "pending",
+            "estimate": 8
+          },
+          {
+            "name": "Task 5",
+            "description": "Improve performance",
+            "status": "in progress",
+            "estimate": 5
+          }
+        ]
+      }
+    ]
+  }
+]
