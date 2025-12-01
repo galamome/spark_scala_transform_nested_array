@@ -54,8 +54,10 @@ object Main {
     a.copy(city = a.city.toUpperCase)
   }
 
+  val DEFAULT_EXPERIENCE = 50
+
   def normalizeSkill(s: Skill): Skill = {
-    s.copy(level = s.level.toUpperCase)
+    s.copy(level = s.level.toUpperCase, experience = if (s.experience != null) s.experience else DEFAULT_EXPERIENCE)
   }
 
   val typedNormalizeAddress: UserDefinedFunction =
