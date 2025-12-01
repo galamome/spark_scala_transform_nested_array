@@ -1,7 +1,7 @@
 package com.galamome
 
 import org.apache.spark.sql.{DataFrame, SparkSession, Row}
-import org.apache.spark.sql.functions.{col, lit, transform, udf}
+import org.apache.spark.sql.functions.{col, lit, udf}
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
