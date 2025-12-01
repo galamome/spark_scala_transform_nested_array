@@ -1,3 +1,5 @@
+package com.galamome
+
 import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema
 import org.apache.spark.sql.types.{ArrayType, StructType}
 

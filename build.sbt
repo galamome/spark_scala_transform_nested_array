@@ -12,6 +12,6 @@ val sparkVersion = "2.3.2"
 
 libraryDependencies ++= Seq(
   // Exact version (only one %) to force to be in old version of Spark
-  "org.apache.spark" % "spark-core" % sparkVersion,
-  "org.apache.spark" % "spark-sql" % sparkVersion
+  "org.apache.spark" % "spark-core_2.11" % sparkVersion,
+  "org.apache.spark" % s"spark-sql_2.11" % sparkVersion
 )
