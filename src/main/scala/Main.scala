@@ -2,7 +2,7 @@ package com.galamome
 
 import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema
 import org.apache.spark.sql.expressions.UserDefinedFunction
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.apache.spark.sql.{DataFrame, Row, SparkSession, functions}
 import Row.makeRow
 
 import org.apache.spark.sql.catalyst.dsl.expressions.StringToAttributeConversionHelper
@@ -32,65 +32,14 @@ object Main {
 
     val result = df.withColumn(
       "address",
-      typedNormalize(col("address"))
+      typedNormalizeAddress(col("address"))
     )
 
-    result.show(false)
+    val result2 = result.withColumn("skills",
+      functions.transform(col("skills"), s => typedNormalizeSkill(s)))
 
-    /*
-    val dfWithExperiencePadded = df.withColumn("skills", setExperienceUdf(col("skills")))
-
-    dfWithExperiencePadded.show(false)
-     */
+    result2.show(false)
   }
-
-  /*
-  private val addAllSkillsUDF = udf((skills: Seq[Row]) => {
-    val allSkillNames = skills.map(_.getAs[String]("name"))
-    skills.map { s =>
-      Map(
-        "name" -> s.getAs[String]("name"),
-        "level" -> s.getAs[String]("level"),
-        "all_skills" -> allSkillNames
-      )
-    }
-  })
-
-  private def setExperienceUdf: UserDefinedFunction = udf((items: Seq[Row]) => {
-    if (items == null)
-    {
-      Seq.empty[Row]
-    }
-    else
-    {
-      setExperience(items)
-    }
-  }, skillArrayType)
-
-  private def setExperience(skills: Seq[Row]): Seq[GenericRowWithSchema] = {
-    val allSkills = new ListBuffer[GenericRowWithSchema]()
-
-    skills.foreach(skill => {
-      if (skill.getAs[String](EXPERIENCE) != null) {
-        val currentSkill = Map(
-          NAME -> skill.getAs[String](NAME),
-          LEVEL -> skill.getAs[String](LEVEL),
-          EXPERIENCE -> skill.getAs[String](EXPERIENCE)
-        )
-        allSkills += makeRow(skillSchema, currentSkill)
-      }
-      else {
-        val skillDefaultExperience = Map(
-          NAME -> skill.getAs[String](NAME),
-          LEVEL -> skill.getAs[String](LEVEL),
-          EXPERIENCE -> "default experience"
-        )
-        allSkills += makeRow(skillSchema, skillDefaultExperience)
-      }
-    })
-    allSkills.sortBy(_.getAs[String](NAME))
-  }
-*/
 
   // https://furcypin.github.io/spark-frame/use_cases/working_with_nested_data/
   /*
@@ -105,8 +54,15 @@ object Main {
     a.copy(city = a.city.toUpperCase)
   }
 
-  val typedNormalize: UserDefinedFunction =
+  def normalizeSkill(s: Skill): Skill = {
+    s.copy(level = s.level.toUpperCase)
+  }
+
+  val typedNormalizeAddress: UserDefinedFunction =
     udf[Address, Address](normalizeAddress)
+
+  val typedNormalizeSkill: UserDefinedFunction =
+    udf[Skill, Skill](normalizeSkill)
 
 
 }
