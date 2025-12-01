@@ -1,16 +1,42 @@
-{
-  "employee_id": 1,
-  "name": "John Smith",
-  "age": 30,
-  "skills": [
-    {
-      "name": "Java",
-      "level": "expert",
-      "experience": 40
+[
+  {
+    "employee_id": 1,
+    "name": "John Smith",
+    "age": 30,
+    "address": {
+      "city": "Chicago",
+      "country": "US"
     },
-    {
-      "name": "Python",
-      "level": "intermediate"
-    }
-  ]
-}
+    "skills": [
+      {
+        "name": "Java",
+        "level": "expert",
+        "experience": 40
+      },
+      {
+        "name": "Python",
+        "level": "intermediate"
+      }
+    ]
+  },
+  {
+    "employee_id": 2,
+    "name": "Ada Lovelace",
+    "age": 31,
+    "address": {
+      "city": "Birmingham",
+      "country": "UK"
+    },
+    "skills": [
+      {
+        "name": "Ada",
+        "level": "expert",
+        "experience": 1000
+      },
+      {
+        "name": "Python",
+        "level": "intermediate"
+      }
+    ]
+  }
+]

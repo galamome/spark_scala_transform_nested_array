@@ -4,8 +4,10 @@ import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema
 import org.apache.spark.sql.expressions.UserDefinedFunction
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import Row.makeRow
+
+import org.apache.spark.sql.catalyst.dsl.expressions.StringToAttributeConversionHelper
 import org.apache.spark.sql.functions.{col, lit, map_keys, udf}
-import org.apache.spark.sql.types.{ArrayType, StringType, IntegerType, StructField, StructType}
+import org.apache.spark.sql.types.{ArrayType, IntegerType, StringType, StructField, StructType}
 
 import scala.collection.mutable.ListBuffer
 
@@ -22,11 +24,18 @@ object Main {
     val df = spark.read
       .option("multiline", value = true)
       .option("mode", "PERMISSIVE")
-      .schema(schema)
+      //.schema(schema)
       .json("data/skills_premier_niveau.json")
 
     df.show(false)
     df.printSchema()
+
+    val result = df.withColumn(
+      "address",
+      typedNormalize(col("address"))
+    )
+
+    result.show(false)
 
     /*
     val dfWithExperiencePadded = df.withColumn("skills", setExperienceUdf(col("skills")))
@@ -92,24 +101,13 @@ object Main {
   }
 
    */
+  def normalizeAddress(a: Address): Address = {
+    a.copy(city = a.city.toUpperCase)
+  }
 
-  val NAME = "name"
-  val LEVEL = "level"
-  val EXPERIENCE = "experience"
+  val typedNormalize: UserDefinedFunction =
+    udf[Address, Address](normalizeAddress)
 
-  val skillSchema = StructType(Seq(
-    StructField(NAME, StringType, nullable = true),
-    StructField(LEVEL, StringType, nullable = true),
-    StructField(EXPERIENCE, StringType, nullable = true)
-  ))
 
-  val skillArrayType: ArrayType = ArrayType(skillSchema)
-
-  val schema = StructType(Seq(
-    StructField("employee_id", IntegerType, nullable = false),
-    StructField(NAME, StringType, nullable = false),
-    StructField("age", IntegerType, nullable = false),
-    StructField("skills", skillArrayType, nullable = false)
-  ))
 }
 
