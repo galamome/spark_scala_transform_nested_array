@@ -1,59 +1,16 @@
-  {
-    "employee_id": 1,
-    "name": "John Smith",
-    "age": 30,
-    "skills": [
-      {
-        "name": "Java",
-        "level": "expert",
-        "experience": 40
-      },
-      {
-        "name": "Python",
-        "level": "intermediate"
-      }
-    ],
-    "projects": [
-      {
-        "name": "Project A",
-        "client": "Acme Inc",
-        "tasks": [
-          {
-            "name": "Task 1",
-            "description": "Implement feature X",
-            "status": "completed",
-            "estimate": 8
-          },
-          {
-            "name": "Task 2",
-            "description": "Fix bug Y",
-            "status": "in progress",
-            "estimate": 5
-          }
-        ]
-      },
-      {
-        "name": "Project B",
-        "client": "Beta Corp",
-        "tasks": [
-          {
-            "name": "Task 3",
-            "description": "Implement feature Z",
-            "status": "pending",
-            "estimate": 13
-          },
-          {
-            "name": "Task 4",
-            "description": "Improve performance",
-            "status": "in progress",
-            "estimate": 3
-          },
-          {
-            "name": "Task 5",
-            "description": "Migrate to Spark 3",
-            "status": "in progress"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "employee_id": 1,
+  "name": "John Smith",
+  "age": 30,
+  "skills": [
+    {
+      "name": "Java",
+      "level": "expert",
+      "experience": 40
+    },
+    {
+      "name": "Python",
+      "level": "intermediate"
+    }
+  ]
+}

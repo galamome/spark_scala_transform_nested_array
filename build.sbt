@@ -1,6 +1,6 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "2.11.12"
+ThisBuild / scalaVersion := "2.12.19"
 
 lazy val root = (project in file("."))
   .settings(
@@ -8,10 +8,10 @@ lazy val root = (project in file("."))
     idePackagePrefix := Some("com.galamome")
   )
 
-val sparkVersion = "2.3.2"
+val sparkVersion = "3.5.1"
 
 libraryDependencies ++= Seq(
   // Exact version (only one %) to force to be in old version of Spark
-  "org.apache.spark" % "spark-core_2.11" % sparkVersion,
-  "org.apache.spark" % s"spark-sql_2.11" % sparkVersion
+  "org.apache.spark" %% "spark-core" % sparkVersion,
+  "org.apache.spark" %% "spark-sql" % sparkVersion
 )

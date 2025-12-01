@@ -22,11 +22,11 @@ object Main {
     val df = spark.read
       .option("multiline", value = true)
       .option("mode", "PERMISSIVE")
-      //.schema(schema)
+      .schema(schema)
       .json("data/skills_premier_niveau.json")
 
     df.show(false)
-    //df.printSchema()
+    df.printSchema()
 
     /*
     val dfWithExperiencePadded = df.withColumn("skills", setExperienceUdf(col("skills")))
@@ -93,7 +93,6 @@ object Main {
 
    */
 
-  /*
   val NAME = "name"
   val LEVEL = "level"
   val EXPERIENCE = "experience"
@@ -112,7 +111,5 @@ object Main {
     StructField("age", IntegerType, nullable = false),
     StructField("skills", skillArrayType, nullable = false)
   ))
-
-  */
 }
 
